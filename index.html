@@ -13,46 +13,163 @@
 
         body {
             background: black;
-            min-height: 100vh;
+            min-height: 40vh;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Courier New', monospace;
+            padding: 2rem;
         }
 
-        /* Красная дрожащая надпись */
+        /* главный контейнер — колонка, авто выравнивание по центру */
+        .diary-core {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 90vw;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ========= КРАСНЫЙ ДРОЖАЩИЙ ЗАГОЛОВОК (свечение + лёгкая тряска) ========= */
         h1 {
             color: red;
-            font-size: 4rem;
+            font-size: 1.2rem;
             text-align: center;
             text-transform: uppercase;
             font-weight: bold;
-            letter-spacing: 2px;
-            animation: shake 0.08s infinite;
-            text-shadow: 0 0 5px red, 0 0 10px darkred;
+            /* лёгкая тряска + мерцание */
+            animation: shakeText 0.03s infinite, flicker 0.3s infinite alternate;
+            text-shadow: 0 0 5px red, 0 0 1px darkred;
+            margin: 0;
+            line-height: 1.4;
+            background: none;
+            border: none;
+            padding: 0;
         }
 
-        @keyframes shake {
-            0% { transform: translate(1px, -1px) rotate(0.2deg); }
-            25% { transform: translate(-1px, 1px) rotate(-0.2deg); }
-            50% { transform: translate(2px, 0px) rotate(0.1deg); }
-            75% { transform: translate(-2px, -1px) rotate(-0.3deg); }
-            100% { transform: translate(1px, 1px) rotate(0.2deg); }
+        /* ========= КАРТИНКА — СИЛЬНАЯ ДРОЖЬ, АВТО-ВЫРАВНИВАНИЕ ========= */
+        .pompi-pic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            /* сильная дрожь — другая анимация, более резкая */
+            animation: shakeHard 0.02s infinite;
+            filter: none;
+            box-shadow: none;
+            text-shadow: none;
+            background: none;
         }
 
-        /* можно добавить совсем лёгкое мерцание, но без бреда */
+        /* картинка — чистая, без рамок, авто ширина */
+        .pompi-pic img {
+            display: block;
+            max-width: 480px;
+            width: 10%;
+            height: auto;
+            border: none;
+            box-shadow: none;
+            outline: none;
+            background: transparent;
+            margin: 0 auto; /* дополнительное центрирование */
+        }
+
+        /* убираем любые эффекты при наведении */
+        .pompi-pic:hover img {
+            border: none;
+            box-shadow: none;
+        }
+
+        /* ---------- АНИМАЦИЯ ДЛЯ ТЕКСТА (лёгкая дрожь) ---------- */
+        @keyframes shakeText {
+            0% { transform: translate(0.5px, -0.5px) rotate(0.1deg); }
+            25% { transform: translate(-0.5px, 0.5px) rotate(-0.1deg); }
+            50% { transform: translate(1px, 0px) rotate(0.05deg); }
+            75% { transform: translate(-1px, -0.5px) rotate(-0.15deg); }
+            100% { transform: translate(0.5px, 0.5px) rotate(0.1deg); }
+        }
+
+        /* ---------- АНИМАЦИЯ ДЛЯ ПОМПИ (ОЧЕНЬ СИЛЬНАЯ ДРОЖЬ) ---------- */
+        @keyframes shakeHard {
+            0% { transform: translate(3px, -3px) rotate(0.6deg); }
+            10% { transform: translate(-2px, 2px) rotate(-0.5deg); }
+            20% { transform: translate(4px, -1px) rotate(0.8deg); }
+            30% { transform: translate(-3px, 3px) rotate(-0.7deg); }
+            40% { transform: translate(2px, -4px) rotate(0.4deg); }
+            50% { transform: translate(-4px, -2px) rotate(-0.9deg); }
+            60% { transform: translate(5px, 1px) rotate(0.5deg); }
+            70% { transform: translate(-2px, 4px) rotate(-0.6deg); }
+            80% { transform: translate(1px, -5px) rotate(0.7deg); }
+            90% { transform: translate(-3px, -1px) rotate(-0.4deg); }
+            100% { transform: translate(2px, 2px) rotate(0.3deg); }
+        }
+
+        /* мерцание только ДЛЯ ЗАГОЛОВКА */
         @keyframes flicker {
-            0% { opacity: 1; text-shadow: 0 0 2px red; }
-            50% { opacity: 0.95; text-shadow: 0 0 8px red, 0 0 12px darkred; }
-            100% { opacity: 1; text-shadow: 0 0 2px red; }
+            0% { 
+                opacity: 0.95; 
+                text-shadow: 0 0 2px red, 0 0 4px #b30000;
+            }
+            50% { 
+                opacity: 1; 
+                text-shadow: 0 0 10px red, 0 0 18px darkred;
+            }
+            100% { 
+                opacity: 0.96; 
+                text-shadow: 0 0 4px #ff4d4d, 0 0 6px #990000;
+            }
         }
 
-        h1 {
-            animation: shake 0.08s infinite, flicker 0.3s infinite alternate;
+        /* маленькая подпись с лёгкой дрожью */
+        .tiny-note {
+            margin-top: 0.5rem;
+            color: #660000;
+            font-size: 0.7rem;
+            text-align: center;
+            font-family: monospace;
+            letter-spacing: 1px;
+            animation: shakeText 0.12s infinite;
+            opacity: 0.8;
+            border: none;
+            text-shadow: none;
+        }
+
+        @media (max-width: 550px) {
+            .pompi-pic img {
+                max-width: 280px;
+            }
+            h1 {
+                font-size: 1rem;
+            }
+        }
+
+        /* полностью убираем любые фоновые рамочки */
+        body, .diary-core, .diary-core * {
+            background: none;
+            background-color: transparent;
+        }
+        body {
+            background: black;
+        }
+
+        /* авто-центрирование для всего контента на случай узких экранов */
+        .diary-core {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Это мой дневник<br>с моими глупенькими мыслями!</h1>
+    <div class="diary-core">
+        <!-- заголовок (красный, лёгкая дрожь + мерцание) -->
+        <h1>Это мой дневник<br>с моими глупенькими мыслями!</h1>
+
+        <!-- помпи — сильная дрожь, авто-выравнивание по центру -->
+        <div class="pompi-pic">
+            <img src="pompi.jpg" alt="pompi" onerror="this.onerror=null; this.src='https://placehold.co/400x400/330000/ff6666?text=pompi'; this.style.border='none';">
+        </div>
+    </div>
 </body>
 </html>
