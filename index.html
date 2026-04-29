@@ -55,7 +55,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 10%;
+            width: 100%;
             /* сильная дрожь — другая анимация, более резкая */
             animation: shakeHard 0.02s infinite;
             filter: none;
@@ -68,7 +68,7 @@
         .pompi-pic img {
             display: block;
             max-width: 480px;
-            width: 100%;
+            width: 10%;
             height: auto;
             border: none;
             box-shadow: none;
@@ -137,6 +137,52 @@
             text-shadow: none;
         }
 
+		/* подзаголовок — только текст, без ебаной самодеятельности */
+		.subtitle {
+			color: #ff6666;
+			font-size: 0.85rem;
+			text-align: center;
+			font-family: 'Courier New', monospace;
+			margin-top: 0;
+			margin-bottom: 0;
+			animation: shakeText 0.05s infinite;
+			text-shadow: 0 0 2px red;
+			background: transparent;
+			border: none;
+			max-width: 90%;
+		}
+
+		.date{
+			color: #ff6666;
+			font-size: 1.2rem;
+			text-align: left;
+			font-family: 'Courier New', monospace;
+			margin-top: 0;
+			margin-bottom: 0;
+			margin-left: 0;
+			margin-right: auto;
+			animation: shakeText 0.05s infinite;
+			text-shadow: 0 0 2px red;
+			background: transparent;
+			border: none;
+			max-width: 90%;
+		}
+
+		.text{
+			color: #ff6666;
+			font-size: 1rem;
+			text-align: justify;
+			font-family: 'Courier New', monospace;
+			margin-top: 0;
+			margin-bottom: 0;
+			animation: shakeText 0.05s infinite;
+			text-shadow: 0 0 2px red;
+			background: transparent;
+			border: none;
+			max-width: 90%;
+		}
+
+
         @media (max-width: 550px) {
             .pompi-pic img {
                 max-width: 280px;
@@ -165,11 +211,14 @@
     <div class="diary-core">
         <!-- заголовок (красный, лёгкая дрожь + мерцание) -->
         <h1>Это мой дневник<br>с моими глупенькими мыслями!</h1>
+		<p class="subtitle">Для конфиденциальности я буду называть себя Помпи ❤ и буду обращаться к себе в женском роде.</p>
 
         <!-- помпи — сильная дрожь, авто-выравнивание по центру -->
         <div class="pompi-pic">
             <img src="pompi.jpg" alt="pompi" onerror="this.onerror=null; this.src='https://placehold.co/400x400/330000/ff6666?text=pompi'; this.style.border='none';">
         </div>
+		<p class="date"> 28.4.2026 </p>
+		<p class="text">Недавно я прочитала дневник Эрика Хариса у меня очень сильно поменялось мировосприятие. Харис затрагивал те же мысли что посещали меня естественный отбор, глупость общества, однообразие и отсутствие уникальности он писал об этом в 1998г. с этого времени(2026 г.) за 28 лет ровно нихуище не поменялось, после этого я начала чаще задумываться об этом. Я пришла к выводам что обычные люди с интересами на уровне 7 летних детей (портрет обыкновенного долбаеба: ебаный мусор без интересов занятия которого это пролистывание тиктока и задротсво в ебаную рейтинговую дрочильню) мне кажется многие смогут узнать в этом описании себя, друзей или знакомых как вы думаете если их так дохуя то изменится ли что то если кто то из них умрет? На смену им прийдёт такой же мусор. Они не думают своими мыслями, их с детства приучили слушаться других, быть послушными и мыслить в рамках системы, их с детства приучили что нужно слушать взрослых что хорошо, а что плохо и они даже не задумались почему именно так и никак по другому это мусор, не обладающий критическом мышлением ,поддающийся пропогаеле государства которое в свою очередь ограничивает нас и вешает на нас цепи. Их нужно истребить что бы государство потеряло глупое стадо которым можно просто манипулировать. Я захотела вести свой дневник что бы не забивать свою голову этими мыслями что бы они лежали в другом месте, а не у меня в голове и не отвлекали от других не менее важных, может быть на мой дневник наткнется кто то с похожим на мое мышлением и прийдёт к таким же истинным отличным от общей массы выводам.</p>
     </div>
 </body>
 </html>
